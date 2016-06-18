@@ -4,7 +4,7 @@ import com.coupons.beans.Customer;
 import com.coupons.dao.CustomerDao;
 import com.coupons.dao.db.CustomerDBDao;
 import com.coupons.exceptions.DaoException;
-
+import java.sql.*;
 public class TestDAOS {
 	public static void main(String[] args) throws DaoException
 	{

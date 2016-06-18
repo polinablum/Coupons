@@ -1,8 +1,8 @@
 package com.coupons.dao;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.*;
 
+import com.coupons.beans.Coupon;
 import com.coupons.beans.Customer;
 import com.coupons.exceptions.DaoException;
 
@@ -15,5 +15,11 @@ public interface CustomerDao {
 	
 	public List<Customer> getAllCustomers() throws DaoException;
 	
-	// Maybe more functions
+	public void removeCustomer(long id);
+		
+	
+	public Set<Coupon> getCoupons();
+	
+	public boolean login(String custName, String password);
 }
+

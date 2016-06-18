@@ -1,10 +1,8 @@
 package com.coupons.dao.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
+
+import java.util.*;
+import java.sql.*;
 
 import com.coupons.beans.Customer;
 import com.coupons.dao.CustomerDao;
@@ -15,12 +13,12 @@ public class CustomerDBDao implements CustomerDao
 	@Override
 	public void createCustomer(Customer c) throws DaoException {
 		// get connection from pool
-		
+		Connection con = null;
 		try {
-			
-		Connection con=getConnection();
+			con = getConnection();
+		
 			String sql = 
-					"INSERT INTO customer VALUES (ID,CUST_NAME,PASSWORD)";
+					"INSERT INTO customer (ID,CUST_NAME,PASSWORD)VALUES(?,?,?) ";
 			PreparedStatement stat = con.prepareStatement(sql);
 			
 			stat.setLong(1, c.getId());
@@ -34,8 +32,7 @@ public class CustomerDBDao implements CustomerDao
 		}
 		finally{
 			// release connection to pool
-			try {Connection con=getConnection();
-			con.close();} catch (SQLException e) {}
+			try {con.close();} catch (SQLException e) {}
 		}
 		
 
@@ -68,14 +65,14 @@ public class CustomerDBDao implements CustomerDao
 	// A function that creates connection
 	// TODO: Use the pool instead later on
 	private Connection getConnection() throws SQLException
-	{  
-		// you must add the driver's jar into the CLASSPATH
-				try {
-					//String driverName = loadFromFIle();
-					Class.forName("com.mysql.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				}
+	{
+		try {
+			//String driverName = loadFromFIle();
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		//get connection to the schema
 		String url = "jdbc:mysql://localhost:3306/coupons";
 				
 		Connection con = 
