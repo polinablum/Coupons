@@ -4,6 +4,7 @@ package com.coupons.dao.db;
 import java.util.*;
 import java.sql.*;
 
+import com.coupons.beans.Coupon;
 import com.coupons.beans.Customer;
 import com.coupons.dao.CustomerDao;
 import com.coupons.exceptions.DaoException;
@@ -80,6 +81,24 @@ public class CustomerDBDao implements CustomerDao
 						"root", "1234");
 		return con;
 				
+	}
+
+	@Override
+	public void removeCustomer(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Set<Coupon> getCoupons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean login(String custName, String password) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
